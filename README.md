@@ -1,7 +1,7 @@
 # Flood-Spider
 对www.cjh.com.cn中国各个水文站点实时数据的爬虫与数据简单可视化
 
-网页可视化demo地址：[flood.milkyship.cn](flood.milkyship.cn)
+网页可视化demo地址：[flood.milkyship.cn](http://flood.milkyship.cn)
 
 ### 配置说明
 
