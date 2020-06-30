@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2020中国水情</title>
+    <meta charset="utf-8">
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/data.js"></script>
+    <style>
+        html body{
+            margin: 0;
+        }
+        .header-top{
+            width: 100%;
+            height: 100px;
+            margin: 0;
+            padding: 10px;
+            padding-top: 20px;
+            display: block;
+            background-color: rgb(87, 102, 240);
+        }
+        @media screen and (max-width: 504px) {
+            .header-top{
+                height: 140px;
+            }
+        }
+        .top-title{
+            margin: 0;
+            padding: 40px;
+            padding-bottom: 0;
+            padding-right: 0;
+            display : inline;
+            color: whitesmoke;
+        }
+        .echarts-map{
+            float: left;
+            margin: 30px;
+            width: 1000px;
+            height:600px;
+            color: rgb(184, 201, 209);
+            background-color: rgb(227, 228, 241);
+        }
+        .echarts-detail{
+            float: left;
+            width: 200px;
+            height: 600px;
+            margin: 30px;
+            margin-right: 0;
+            padding: 1px;
+            background-color: rgb(241, 242, 248);
+        }
+        .echarts-detail p{
+            margin: 10px;
+            color: rgb(32, 32, 39);
+        }
+        .charts-title{
+            float: left;
+            margin: 20px 20px 0 30px;
+            padding: 20px;
+            width: 100%;
+            color: rgb(82, 82, 82);
+            background-color: rgb(219, 224, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class='header-top'>
+        <div><h1 class="top-title">国内各大主要水文站点数据详情</h1></div>
+        <div><h2 class="top-title" style="color: rgb(255, 215, 215);">自2020年6月23日23时起</h2></div>
+    </div>
+    <div class="echarts-container">
+        <h3 class="charts-title">各站点水位</h3>
+        <div class="echarts-detail">
+            <p>数据来自<a href='http://www.cjh.com.cn/'>长江水文网</a></p><br>
+            <p>日期格式为“月-日-时”，水位单位为米</p><br>
+            <p>图中三峡水库与丹江口水库的入库流量数据为每六小时一次，绘图不连续</p><br>
+            <p>拖动滑块缩放图形，点击图例可以屏蔽对应数据</p>
+        </div>
+        <div id="level" class="echarts-map"></div>
+    </div>
+    <div class="echarts-container">
+        <h3 class="charts-title">各站点流量</h3>
+        <div class="echarts-detail">
+            <p>日期格式为“月-日-时”，流量单位为立方米每秒</p><br>
+        </div>
+        <div id="flow" class="echarts-map"></div>
+    </div>
+
+    <script>
+        var level_chart = echarts.init(document.getElementById('level'));
+        level_chart.setOption(level);
+        var flow_chart = echarts.init(document.getElementById('flow'));
+        flow_chart.setOption(flow);
+    </script>
+</body>
+</html>
