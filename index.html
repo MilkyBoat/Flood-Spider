@@ -1,100 +1,114 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>2020中国水情</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
     <script src="./js/echarts.min.js"></script>
     <script src="./js/data.js"></script>
     <style>
-        html body{
-            margin: 0;
+        .margin_top20 {
+            margin-top: 20px;
         }
-        .header-top{
-            width: 100%;
-            height: 100px;
-            margin: 0;
-            padding: 10px;
-            padding-top: 20px;
-            display: block;
-            background-color: rgb(87, 102, 240);
-        }
-        @media screen and (max-width: 504px) {
-            .header-top{
-                height: 140px;
-            }
-        }
-        .top-title{
-            margin: 0;
-            padding: 40px;
-            padding-bottom: 0;
-            padding-right: 0;
-            display : inline;
-            color: whitesmoke;
-        }
-        .top-info{
-            margin-right: 40px;
-            padding: 10px;
-            float: right;
-            color: rgb(237, 240, 94);
-        }
-        .echarts-map{
-            float: left;
-            margin: 30px;
-            width: 1000px;
-            height:600px;
+
+        .echarts-map {
+            height: 600px;
             color: rgb(184, 201, 209);
             background-color: #ececf3;
         }
-        .echarts-detail{
-            float: left;
-            width: 200px;
-            height: 600px;
-            margin: 30px;
-            margin-right: 0;
-            padding: 1px;
+
+        .header-top {
+            width: 100%;
+            margin: 0;
+            display: block;
+            background-color: rgb(87, 102, 240);
+        }
+
+        @media screen and (max-width: 768px) {
+            .top-title {
+                font-size: 1.2em;
+            }
+            .echarts-map {
+                height: 300px;
+            }
+            .echarts-detail h3{font-size: 1.2em;}
+        }
+
+        .top-title {
+            color: whitesmoke;
+        }
+
+        .top-info {
+            color: rgb(237, 240, 94);
+        }
+
+        .echarts-detail {
             background-color: #ececf3;
         }
-        .echarts-detail p{
+
+        .echarts-detail p {
             margin: 10px;
             color: rgb(32, 32, 39);
-            font-family: 'Microsoft YaHei','SF Pro Display',Roboto,Noto,Arial,'PingFang SC',sans-serif;
+            font-family: 'Microsoft YaHei', 'SF Pro Display', Roboto, Noto, Arial, 'PingFang SC', sans-serif;
         }
-        .charts-title{
-            float: left;
-            margin: 20px 20px 0 30px;
-            padding: 20px;
-            width: 100%;
-            color: rgb(82, 82, 82);
-            background-color: #ececf3;
+
+        .echarts-detail h3 {
+            line-height: 3;
         }
     </style>
 </head>
-<body>
-    <div class='header-top'>
-        <div><h1 class="top-title">国内各大主要水文站点数据详情</h1></div>
-        <div>
-            <h2 class="top-title" style="color: rgb(255, 215, 215);">自2020年6月23日23时起</h2>
-            <h4 class="top-title top-info">欢迎加qq群979906225参与讨论</h4>
-        </div>
-    </div>
-    <div class="echarts-container">
-        <h3 class="charts-title">各站点水位</h3>
-        <div class="echarts-detail">
-            <p>数据来自<a href='http://www.cjh.com.cn/'>长江水文网</a></p><br>
-            <p>日期格式为“月-日-时”，水位单位为米</p><br>
-            <p>图中三峡水库与丹江口水库的入库流量数据为每六小时一次，绘图不连续</p><br>
-            <p>拖动滑块缩放图形，点击图例可以屏蔽对应数据</p>
-        </div>
-        <div id="level" class="echarts-map"></div>
-    </div>
-    <div class="echarts-container">
-        <h3 class="charts-title">各站点流量</h3>
-        <div class="echarts-detail">
-            <p>日期格式为“月-日-时”，流量单位为立方米每秒</p><br>
-        </div>
-        <div id="flow" class="echarts-map"></div>
-    </div>
 
+<body>
+    <div class='header-top row'>
+        <div class="container">
+            <div class="row">
+                <h1 class="top-title col-12 margin_top20">国内各大主要水文站点数据详情</h1>
+            </div>
+            <div class="row">
+                <h2 class="top-title col-xl-6 col-md-12" style="color: rgb(255, 215, 215);">自2020年6月23日23时起</h2>
+                <h4 class="top-title top-info col-xl-6 col-md-12">欢迎加qq群979906225参与讨论</h4>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row margin_top20">
+            <div class="echarts-detail col-12">
+                <h3>各站点水位</h3>
+            </div>
+        </div>
+        <div class="row margin_top20">
+            <div class="echarts-detail col-md-12 col-xl-2">
+                <p>数据来自<a href='http://www.cjh.com.cn/'>长江水文网</a></p>
+                <p>日期格式为“月-日-时”，水位单位为米</p>
+                <p>图中三峡水库与丹江口水库的入库流量数据为每六小时一次，绘图不连续</p>
+                <p>拖动滑块缩放图形，点击图例可以屏蔽对应数据</p>
+            </div>
+            <div id="level" class="echarts-map col-xl-10 col-md-12"></div>
+        </div>
+        <div class="row margin_top20">
+            <div class="echarts-detail col-12">
+                <h3>各站点流量</h3>
+            </div>
+        </div>
+        <div class="row margin_top20">
+            <div class="echarts-detail col-lg-12 col-xl-2">
+                <p>日期格式为“月-日-时”，流量单位为立方米每秒</p><br>
+            </div>
+            <div id="flow" class="echarts-map col-xl-10 col-lg-12"></div>
+        </div>
+    </div>
     <script>
         var level_chart = echarts.init(document.getElementById('level'));
         level_chart.setOption(level);
@@ -102,4 +116,5 @@
         flow_chart.setOption(flow);
     </script>
 </body>
+
 </html>
